@@ -1,10 +1,7 @@
 <template>
-  <div class="horizontal-scrolling-page">
-    <!-- 空盒子部分 -->
+  <div class="horizontal-scrolling-page" ref="rootRef">
     <div class="empty-box">empty</div>
     <div class="empty-box">empty</div>
-
-    <!-- 水平滚动部分 -->
     <div
       ref="scrollBoxRef"
       class="scroll-box"
@@ -19,19 +16,15 @@
           class="scroll-card"
           :style="{
             transform: `translateX(${-cardTranslateX}px)`,
-            marginLeft: index === 0 ? '5rem' : '0',
+            marginLeft: '5rem',
           }">
           <p>card {{ card.text }}</p>
-
-          <!-- 城市背景 -->
           <img
             class="city-background"
             :class="[`city-${index + 1}`]"
             src="../assets/imgs/city.svg"
             :style="{ transform: `translateX(${cityTranslateX * 0.5}px)` }"
             alt="City background" />
-
-          <!-- 卡车 -->
           <img
             class="truck"
             :class="[`truck-${index + 1}`]"
@@ -42,7 +35,6 @@
       </div>
     </div>
 
-    <!-- 更多空盒子 -->
     <div class="empty-box">empty</div>
     <div class="empty-box">empty</div>
   </div>
@@ -57,10 +49,9 @@ interface Card {
   id: number;
 }
 
-// 响应式数据
 const scrollBoxRef = ref<HTMLElement | null>(null);
 const scrollContainerRef = ref<HTMLElement | null>(null);
-
+const rootRef = ref<HTMLElement | null>(null);
 // 卡片数据
 const cards = ref<Card[]>([
   { text: "one", id: 1 },
@@ -75,26 +66,35 @@ const cardTranslateX = ref(0);
 const cityTranslateX = ref(0);
 const truckTranslateX = ref(0);
 const scrollBoxHeight = ref(0);
-
-// 计算属性
+// 动画开始标志
 const triggerDistance = computed(() => {
+  //  到父元素顶部容器的距离
   return scrollBoxRef.value?.offsetTop || 0;
 });
-
+// 动画结束标志
 const borderDistance = computed(() => {
   if (!scrollBoxRef.value) return 0;
   return (
     triggerDistance.value + scrollBoxRef.value.offsetHeight - window.innerHeight
   );
 });
-
+// 最大水平移动距离
 const maxHorizontalDistance = computed(() => {
   if (!scrollContainerRef.value) return 0;
-  return scrollContainerRef.value.offsetWidth - window.innerWidth;
+  else {
+    if (rootRef.value) {
+      return (
+        scrollContainerRef.value.offsetWidth - rootRef.value?.offsetWidth + 100
+      );
+    }
+    return 0;
+  }
 });
 
 // 处理滚动
 const handleScroll = () => {
+  console.log(maxHorizontalDistance.value);
+
   scrollY.value = window.scrollY;
 
   if (
@@ -104,7 +104,7 @@ const handleScroll = () => {
     // 计算容器垂直移动
     containerY.value = scrollY.value - triggerDistance.value;
 
-    // 计算水平移动距离
+    // 垂直移动比例
     const scrollProgress =
       (scrollY.value - triggerDistance.value) /
       (borderDistance.value - triggerDistance.value);
@@ -115,7 +115,7 @@ const handleScroll = () => {
     cityTranslateX.value = horizontalDistance;
     truckTranslateX.value = horizontalDistance;
   } else {
-    // 重置位置
+    // 重置
     if (scrollY.value < triggerDistance.value) {
       containerY.value = 0;
       cardTranslateX.value = 0;
@@ -135,6 +135,9 @@ const handleResize = () => {
 
 // 生命周期钩子
 onMounted(() => {
+  // watch(scrollY, (val) => {
+  //   console.log("scrollY", val);
+  // });
   // 初始化
   handleResize();
 
@@ -203,10 +206,11 @@ img {
 }
 
 .scroll-container {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   height: 100vh;
+  width: auto;
   flex-shrink: 0;
   will-change: transform;
 }
