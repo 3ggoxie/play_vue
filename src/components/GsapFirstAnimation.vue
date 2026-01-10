@@ -4,19 +4,23 @@
     <button @click="animGsapTo">GsapTo</button>
     <button @click="animGsapFrom">GsapFrom</button>
     <button @click="animGsapFromTo">GsapFromTo</button>
+    <button @click="animGsapSet">GsapSet</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import gsap from "gsap";
 function animGsapTo() {
-  gsap.to(".box", { y: 200, fill: "#234143" });
+  gsap.to(".box", { y: 200, rotation: 45 });
 }
 function animGsapFrom() {
   gsap.from(".box", { x: 200 });
 }
 function animGsapFromTo() {
   gsap.fromTo(".box", { x: 200 }, { y: 100 });
+}
+function animGsapSet() {
+  gsap.set(".box", { x: -50 });
 }
 </script>
 
