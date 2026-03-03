@@ -4,13 +4,22 @@
 </template>
 <script setup lang="ts">
 import GsapStagger from "./components/GsapStagger.vue";
-import Greeter from "./decorator/simpleDecorator";
-
-@Greeter
-class A {}
+import { countInstance } from "./decorator/simpleDecorator";
+@countInstance
+class A {
+  count: number;
+  constructor() {
+    this.count = 0;
+  }
+}
+// interface A {
+//   count: number;
+//   greet(): void;
+// }
 
 const a = new A();
-(a as any).greet();
+const b = new A();
+console.log(b.count);
 
 // import GsapFirstAnimation from "./components/GsapFirstAnimation.vue";
 </script>
