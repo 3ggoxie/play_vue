@@ -10,7 +10,7 @@ export function Greeter<T extends { new (...args: any[]): {} }>(
 }
 export function countInstance(
   value: new (...args: any[]) => {} & { count: number },
-  context: ClassDecoratorContext
+  _context: ClassDecoratorContext
 ) {
   let instanceCount = 0;
   const wrapper = function (...args: any[]) {

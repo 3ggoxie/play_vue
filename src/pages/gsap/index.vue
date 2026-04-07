@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 import { Sparkles, Zap } from "lucide-vue-next"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 const router = useRouter()

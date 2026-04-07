@@ -4,7 +4,7 @@
     <div class="space-y-3">
       <h2 class="text-3xl font-bold tracking-tight">欢迎来到 Vue Play</h2>
       <p class="text-muted-foreground text-lg max-w-2xl">
-        这是一个学习新技术的游乐场，你可以在这里实践 Vue3、GSAP、Three.js、Cesium 等技术。
+        这是一个学习新技术的游乐场，可以在这里实践任何新鲜的技术。
       </p>
     </div>
 
@@ -17,7 +17,7 @@
         @click="router.push(tech.path)">
         <CardHeader class="pb-4">
           <div class="flex flex-row items-center justify-between">
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 group-hover:from-primary/30 group-hover:to-primary/10 transition-all duration-300">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-primary/20 to-primary/5 group-hover:from-primary/30 group-hover:to-primary/10 transition-all duration-300">
               <component :is="tech.icon" class="h-6 w-6 text-primary" />
             </div>
             <Badge :variant="tech.status === 'completed' ? 'default' : tech.status === 'in-progress' ? 'secondary' : 'outline'" class="shrink-0">
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router"
 import { Sparkles, Box, Globe, Code2 } from "lucide-vue-next"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 const router = useRouter()
