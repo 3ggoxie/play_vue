@@ -33,7 +33,7 @@
               "
               class="shrink-0"
             >
-              {{ statusText[tech.status] }}
+              {{ statusText[tech.status as keyof typeof statusText] }}
             </Badge>
           </div>
         </CardHeader>
