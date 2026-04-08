@@ -11,20 +11,20 @@
 </template>
 
 <script setup lang="ts">
-import gsap from "gsap"
-import { Button } from "@/components/ui/button"
+import gsap from 'gsap'
+import { Button } from '@/components/ui/button'
 
 function animGsapTo() {
-  gsap.to(".box", { y: 200, rotation: 45 })
+  gsap.to('.box', { y: 200, rotation: 45 })
 }
 function animGsapFrom() {
-  gsap.from(".box", { x: 200 })
+  gsap.from('.box', { x: 200 })
 }
 function animGsapFromTo() {
-  gsap.fromTo(".box", { x: 200 }, { y: 100 })
+  gsap.fromTo('.box', { x: 200 }, { y: 100 })
 }
 function animGsapSet() {
-  gsap.set(".box", { x: -50 })
+  gsap.set('.box', { x: -50 })
 }
 </script>
 

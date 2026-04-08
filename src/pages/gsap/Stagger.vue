@@ -7,10 +7,11 @@
         :key="index"
         :ref="
           (el) => {
-            if (el) boxRefs[index] = el as HTMLDivElement;
+            if (el) boxRefs[index] = el as HTMLDivElement
           }
         "
-        @click="handleBoxClick(index)">
+        @click="handleBoxClick(index)"
+      >
         {{ index + 1 }}
       </div>
     </div>
@@ -19,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
-import gsap from "gsap"
+import { ref } from 'vue'
+import gsap from 'gsap'
 
 const boxRefs = ref<HTMLDivElement[]>([])
 const boxes = new Array(25).fill(0)
@@ -34,8 +35,8 @@ const handleBoxClick = (clickedIndex: number) => {
       from: clickedIndex,
       amount: 1,
     },
-    ease: "back.in",
-    overwrite: "auto",
+    ease: 'back.in',
+    overwrite: 'auto',
   })
 }
 </script>
@@ -64,7 +65,7 @@ const handleBoxClick = (clickedIndex: number) => {
   width: 80px;
   height: 80px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #ADFF2F 0%, #7FFF00 100%);
+  background: linear-gradient(135deg, #adff2f 0%, #7fff00 100%);
   cursor: pointer;
   display: flex;
   align-items: center;

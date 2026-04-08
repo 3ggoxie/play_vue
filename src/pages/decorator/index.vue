@@ -12,7 +12,9 @@
       <Card class="border-2">
         <CardHeader>
           <div class="flex flex-row items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/20 to-purple-500/5">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/20 to-purple-500/5"
+            >
               <Code2 class="h-5 w-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
@@ -22,7 +24,9 @@
           </div>
         </CardHeader>
         <CardContent class="space-y-4">
-          <pre class="rounded-lg bg-muted p-4 text-sm overflow-x-auto leading-relaxed"><code>{{ decoratorCode }}</code></pre>
+          <pre
+            class="rounded-lg bg-muted p-4 text-sm overflow-x-auto leading-relaxed"
+          ><code>{{ decoratorCode }}</code></pre>
         </CardContent>
       </Card>
 
@@ -30,9 +34,7 @@
       <Card class="border-2">
         <CardHeader>
           <CardTitle>交互演示</CardTitle>
-          <CardDescription>
-            点击按钮创建类实例，观察 count 值的变化
-          </CardDescription>
+          <CardDescription> 点击按钮创建类实例，观察 count 值的变化 </CardDescription>
         </CardHeader>
         <CardContent class="space-y-6">
           <div class="flex gap-4">
@@ -63,16 +65,23 @@
               <div
                 v-for="i in Math.min(instanceCount, 20)"
                 :key="i"
-                class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium"
+              >
                 {{ i }}
               </div>
-              <div v-if="instanceCount > 20" class="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">
+              <div
+                v-if="instanceCount > 20"
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs"
+              >
                 +{{ instanceCount - 20 }}
               </div>
             </div>
           </div>
 
-          <div v-else class="flex items-center justify-center h-32 rounded-lg border-2 border-dashed text-muted-foreground">
+          <div
+            v-else
+            class="flex items-center justify-center h-32 rounded-lg border-2 border-dashed text-muted-foreground"
+          >
             <p>点击「创建实例」开始</p>
           </div>
         </CardContent>
@@ -82,10 +91,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
-import { Code2, Plus, RotateCcw } from "lucide-vue-next"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { ref } from 'vue'
+import { Code2, Plus, RotateCcw } from 'lucide-vue-next'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 const instanceCount = ref(0)
 const latestCount = ref(0)
@@ -107,7 +116,7 @@ const decoratorCode = `function countInstance(
 }`
 
 class DemoClass {
-  count: number = 0;
+  count: number = 0
 }
 
 const instances: DemoClass[] = []
